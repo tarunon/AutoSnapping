@@ -12,7 +12,18 @@
 		EBEFA3381B856D9200DFDDBB /* UICollectionView+autoSnapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEFA3371B856D9200DFDDBB /* UICollectionView+autoSnapping.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		EB12AEEF1B85C56900086E97 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EB12AEEB1B85C56900086E97 /* Sample.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EB12AECA1B85C3CF00086E97;
+			remoteInfo = Sample;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		EB12AEEB1B85C56900086E97 /* Sample.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Sample.xcodeproj; path = Sample/Sample.xcodeproj; sourceTree = "<group>"; };
 		EBEFA32A1B856D4400DFDDBB /* AutoSnapping.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AutoSnapping.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBEFA32D1B856D4400DFDDBB /* AutoSnapping.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AutoSnapping.h; sourceTree = "<group>"; };
 		EBEFA32F1B856D4400DFDDBB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -31,11 +42,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EB12AEEC1B85C56900086E97 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EB12AEF01B85C56900086E97 /* Sample.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		EBEFA3201B856D4400DFDDBB = {
 			isa = PBXGroup;
 			children = (
 				EBEFA32C1B856D4400DFDDBB /* AutoSnapping */,
 				EBEFA32B1B856D4400DFDDBB /* Products */,
+				EB12AEEB1B85C56900086E97 /* Sample.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -115,12 +135,28 @@
 			mainGroup = EBEFA3201B856D4400DFDDBB;
 			productRefGroup = EBEFA32B1B856D4400DFDDBB /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = EB12AEEC1B85C56900086E97 /* Products */;
+					ProjectRef = EB12AEEB1B85C56900086E97 /* Sample.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				EBEFA3291B856D4400DFDDBB /* AutoSnapping */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		EB12AEF01B85C56900086E97 /* Sample.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = Sample.app;
+			remoteRef = EB12AEEF1B85C56900086E97 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		EBEFA3281B856D4400DFDDBB /* Resources */ = {
@@ -288,6 +324,7 @@
 				EBEFA3341B856D4400DFDDBB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

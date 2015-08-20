@@ -24,9 +24,9 @@ public extension UITableView {
         
         let targetOffsetYDif = targetOffset.y - cellRect.minY
         if targetOffsetYDif < roundingHeight {
-            targetOffset.y = cellRect.minY
+            targetOffset.y = cellRect.minY - self.contentInset.top
         } else if targetOffsetYDif > cellRect.height - roundingHeight {
-            targetOffset.y = cellRect.maxY
+            targetOffset.y = cellRect.maxY - self.contentInset.top
         }
         
         return targetOffset

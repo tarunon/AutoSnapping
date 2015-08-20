@@ -27,16 +27,16 @@ public extension UICollectionView {
         
         let targetOffsetXDif = targetOffset.x - cellLayout.frame.minX
         if targetOffsetXDif < roundingWidth {
-            targetOffset.x = cellLayout.frame.minX
+            targetOffset.x = cellLayout.frame.minX - self.contentInset.left
         } else if targetOffsetXDif > cellLayout.frame.width - roundingWidth {
-            targetOffset.x = cellLayout.frame.maxX
+            targetOffset.x = cellLayout.frame.maxX - self.contentInset.left
         }
         
         let targetOffsetYDif = targetOffset.y - cellLayout.frame.minY
         if targetOffsetYDif < roundingHeight {
-            targetOffset.y = cellLayout.frame.minY
+            targetOffset.y = cellLayout.frame.minY - self.contentInset.top
         } else if targetOffsetYDif > cellLayout.frame.height - roundingHeight {
-            targetOffset.y = cellLayout.frame.maxY
+            targetOffset.y = cellLayout.frame.maxY - self.contentInset.top
         }
         
         return targetOffset
