@@ -1,5 +1,5 @@
 # AutoSnapping
-AutoSnapping when scroll decelerating in UITableView or UICollectionView
+Auto snapping when scroll decelerating in UITableView or UICollectionView
 
 ## Sample
 ```swift
