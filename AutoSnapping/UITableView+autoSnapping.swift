@@ -15,19 +15,20 @@ public extension UITableView {
         if CGPointEqualToPoint(velocity, CGPointZero) || targetOffset.y > self.contentSize.height - self.frame.size.height - self.contentInset.top - self.contentInset.bottom {
             return targetOffset
         }
-        guard let indexPath = self.indexPathForRowAtPoint(targetOffset)
-            , cell = self.cellForRowAtIndexPath(indexPath) else {
+        guard let indexPath = self.indexPathForRowAtPoint(targetOffset) else {
                 return targetOffset
         }
-        let cellOffset = cell.frame.origin.y
-        let cellHeight = cell.frame.height
-        let targetOffsetDif = targetOffset.y - cellOffset
-        if targetOffsetDif < roundingHeight {
-            return CGPoint(x: targetOffset.x, y: cellOffset)
-        } else if targetOffsetDif > cellHeight - roundingHeight {
-            return CGPoint(x: targetOffset.x, y: cellOffset + cellHeight)
-        } else {
-            return targetOffset
+        
+        var targetOffset = targetOffset
+        let cellRect = self.rectForRowAtIndexPath(indexPath)
+        
+        let targetOffsetYDif = targetOffset.y - cellRect.minY
+        if targetOffsetYDif < roundingHeight {
+            targetOffset.y = cellRect.minY
+        } else if targetOffsetYDif > cellRect.height - roundingHeight {
+            targetOffset.y = cellRect.maxY
         }
+        
+        return targetOffset
     }
 }

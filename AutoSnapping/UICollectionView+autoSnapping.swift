@@ -13,32 +13,30 @@ private let roundingHeight: CGFloat = 160.0
 
 public extension UICollectionView {
     func autoSnapping(velocity velocity: CGPoint, targetOffset: CGPoint) -> CGPoint {
-        if CGPointEqualToPoint(velocity, CGPointZero) || targetOffset.y > self.contentSize.height - self.frame.size.height - self.contentInset.top - self.contentInset.bottom {
-            return targetOffset
+        if CGPointEqualToPoint(velocity, CGPointZero)
+            || targetOffset.y > self.contentSize.height - self.frame.size.height - self.contentInset.top - self.contentInset.bottom
+            || targetOffset.x > self.contentSize.width - self.frame.size.width - self.contentInset.left - self.contentInset.right {
+                return targetOffset
         }
         guard let indexPath = self.indexPathForItemAtPoint(targetOffset)
-            , cell = self.cellForItemAtIndexPath(indexPath) else {
+            , cellLayout = self.layoutAttributesForItemAtIndexPath(indexPath) else {
                 return targetOffset
         }
         
         var targetOffset = targetOffset
         
-        let cellOffsetX = cell.frame.origin.x
-        let cellWidth = cell.frame.width
-        let targetOffsetXDif = targetOffset.x - cellOffsetX
+        let targetOffsetXDif = targetOffset.x - cellLayout.frame.minX
         if targetOffsetXDif < roundingWidth {
-            targetOffset.x = cellOffsetX
-        } else if targetOffsetXDif > cellWidth - roundingWidth {
-            targetOffset.x = cellOffsetX + cellWidth
+            targetOffset.x = cellLayout.frame.minX
+        } else if targetOffsetXDif > cellLayout.frame.width - roundingWidth {
+            targetOffset.x = cellLayout.frame.maxX
         }
         
-        let cellOffsetY = cell.frame.origin.y
-        let cellHeight = cell.frame.height
-        let targetOffsetYDif = targetOffset.y - cellOffsetY
+        let targetOffsetYDif = targetOffset.y - cellLayout.frame.minY
         if targetOffsetYDif < roundingHeight {
-            targetOffset.y = cellOffsetY
-        } else if targetOffsetYDif > cellHeight - roundingHeight {
-            targetOffset.y = cellOffsetY + cellHeight
+            targetOffset.y = cellLayout.frame.minY
+        } else if targetOffsetYDif > cellLayout.frame.height - roundingHeight {
+            targetOffset.y = cellLayout.frame.maxY
         }
         
         return targetOffset
