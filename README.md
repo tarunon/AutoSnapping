@@ -1,7 +1,7 @@
 # AutoSnapping
 AutoSnapping when scroll decelerating in UITableView or UICollectionView
 
-# Sample
+## Sample
 ```swift
 // In your tableView delegate class
 func scrollViewWillEndDragging(scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
@@ -16,5 +16,5 @@ func scrollViewWillEndDragging(scrollView: UIScrollView, withVelocity velocity: 
 }
 ```
 
-# LICENSE
+## LICENSE
 MIT
