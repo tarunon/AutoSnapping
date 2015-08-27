@@ -32,3 +32,13 @@ public extension UITableView {
         return targetOffset
     }
 }
+
+protocol AutoSnappingTableViewDelegate: UIScrollViewDelegate {
+    var tableView: UITableView! { get set }
+}
+
+extension AutoSnappingTableViewDelegate {
+    func scrollViewWillEndDragging(scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        targetContentOffset.memory = tableView.autoSnapping(velocity: velocity, targetOffset: targetContentOffset.memory)
+    }
+}
