@@ -29,7 +29,7 @@ class ViewController: UITableViewController {
 
     override func scrollViewWillEndDragging(scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         if autoSnappingEnabled {
-            targetContentOffset.memory = tableView.autoSnapping(velocity: velocity, targetOffset: targetContentOffset.memory)
+            tableView.autoSnapping(velocity: velocity, targetOffset: targetContentOffset)
         }
     }
 }

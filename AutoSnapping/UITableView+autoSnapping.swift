@@ -11,24 +11,23 @@ import Foundation
 private let roundingHeight: CGFloat = 160.0
 
 public extension UITableView {
-    func autoSnapping(velocity velocity: CGPoint, targetOffset: CGPoint) -> CGPoint {
-        if CGPointEqualToPoint(velocity, CGPointZero) || targetOffset.y > self.contentSize.height - self.frame.size.height - self.contentInset.top - self.contentInset.bottom {
-            return targetOffset
+    func autoSnapping(velocity velocity: CGPoint, targetOffset: UnsafeMutablePointer<CGPoint>) {
+        if CGPointEqualToPoint(velocity, CGPointZero) || targetOffset.memory.y > self.contentSize.height - self.frame.size.height - self.contentInset.top - self.contentInset.bottom {
+            return
         }
-        guard let indexPath = self.indexPathForRowAtPoint(targetOffset) else {
-                return targetOffset
+        guard let indexPath = self.indexPathForRowAtPoint(targetOffset.memory) else {
+            return
         }
         
-        var targetOffset = targetOffset
+        var offset = targetOffset.memory
         let cellRect = self.rectForRowAtIndexPath(indexPath)
         
-        let targetOffsetYDif = targetOffset.y - cellRect.minY
+        let targetOffsetYDif = offset.y - cellRect.minY
         if targetOffsetYDif < roundingHeight {
-            targetOffset.y = cellRect.minY - self.contentInset.top
+            offset.y = cellRect.minY - self.contentInset.top
         } else if targetOffsetYDif > cellRect.height - roundingHeight {
-            targetOffset.y = cellRect.maxY - self.contentInset.top
+            offset.y = cellRect.maxY - self.contentInset.top
         }
-        
-        return targetOffset
+        targetOffset.memory = offset
     }
 }

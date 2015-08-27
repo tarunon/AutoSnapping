@@ -11,14 +11,14 @@ Using AutoSnapping / Not at
 ```swift
 // In your tableView delegate class
 func scrollViewWillEndDragging(scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-    targetContentOffset.memory = self.tableView.autoSnapping(velocity: velocity, targetOffset: targetContentOffset.memory)
+    self.tableView.autoSnapping(velocity: velocity, targetOffset: targetContentOffset)
 }
 ```
 
 ```swift
 // In your collectionView delegate class
 func scrollViewWillEndDragging(scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-    targetContentOffset.memory = self.collectionView.autoSnapping(velocity: velocity, targetOffset: targetContentOffset.memory)
+    self.collectionView.autoSnapping(velocity: velocity, targetOffset: targetContentOffset)
 }
 ```
 
