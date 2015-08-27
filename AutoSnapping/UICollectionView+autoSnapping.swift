@@ -42,13 +42,3 @@ public extension UICollectionView {
         return targetOffset
     }
 }
-
-protocol AutoSnappingCollectionViewDelegate: UIScrollViewDelegate {
-    var collectionView: UICollectionView! { get set }
-}
-
-extension AutoSnappingCollectionViewDelegate {
-    func scrollViewWillEndDragging(scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        targetContentOffset.memory = collectionView.autoSnapping(velocity: velocity, targetOffset: targetContentOffset.memory)
-    }
-}

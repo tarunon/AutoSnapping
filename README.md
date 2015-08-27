@@ -22,11 +22,5 @@ func scrollViewWillEndDragging(scrollView: UIScrollView, withVelocity velocity: 
 }
 ```
 
-```swift
-// In your UITableViewController Subclass
-class TableViewController: UITableViewController, AutoSnappingTableViewDelegate {
-...
-```
-
 ## LICENSE
 MIT
