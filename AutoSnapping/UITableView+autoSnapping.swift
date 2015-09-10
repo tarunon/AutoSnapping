@@ -12,7 +12,7 @@ private let roundingHeight: CGFloat = 160.0
 
 public extension UITableView {
     func autoSnapping(velocity velocity: CGPoint, targetOffset: UnsafeMutablePointer<CGPoint>) {
-        if CGPointEqualToPoint(velocity, CGPointZero) || targetOffset.memory.y > self.contentSize.height - self.frame.size.height - self.contentInset.top - self.contentInset.bottom {
+        if CGPointEqualToPoint(velocity, CGPointZero) || targetOffset.memory.y >= self.contentSize.height - self.frame.size.height - self.contentInset.top - self.contentInset.bottom {
             return
         }
         guard let indexPath = self.indexPathForRowAtPoint(targetOffset.memory) else {
