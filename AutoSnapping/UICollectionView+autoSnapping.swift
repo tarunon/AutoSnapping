@@ -14,8 +14,8 @@ private let roundingHeight: CGFloat = 160.0
 public extension UICollectionView {
     func autoSnapping(velocity velocity: CGPoint, targetOffset: UnsafeMutablePointer<CGPoint>) {
         if CGPointEqualToPoint(velocity, CGPointZero)
-            || targetOffset.memory.y > self.contentSize.height - self.frame.size.height - self.contentInset.top - self.contentInset.bottom
-            || targetOffset.memory.x > self.contentSize.width - self.frame.size.width - self.contentInset.left - self.contentInset.right {
+            || targetOffset.memory.y >= self.contentSize.height - self.frame.size.height - self.contentInset.top - self.contentInset.bottom
+            || targetOffset.memory.x >= self.contentSize.width - self.frame.size.width - self.contentInset.left - self.contentInset.right {
                 return
         }
         guard let indexPath = self.indexPathForItemAtPoint(targetOffset.memory)
