@@ -6,24 +6,24 @@
 //  Copyright © 2015 tarunon. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 private let roundingWidth: CGFloat = 160.0
 private let roundingHeight: CGFloat = 160.0
 
 public extension UICollectionView {
-    func autoSnapping(velocity velocity: CGPoint, targetOffset: UnsafeMutablePointer<CGPoint>) {
-        if CGPointEqualToPoint(velocity, CGPointZero)
+    func autoSnapping(velocity: CGPoint, targetOffset: UnsafeMutablePointer<CGPoint>) {
+        if velocity.equalTo(CGPoint(x: 0, y: 0))
             || targetOffset.memory.y >= self.contentSize.height - self.frame.size.height - self.contentInset.top - self.contentInset.bottom
-            || targetOffset.memory.x >= self.contentSize.width - self.frame.size.width - self.contentInset.left - self.contentInset.right {
-                return
+            || targetOffset.pointee.x >= self.contentSize.width - self.frame.size.width - self.contentInset.left - self.contentInset.right {
+            return
         }
-        guard let indexPath = self.indexPathForItemAtPoint(targetOffset.memory)
-            , cellLayout = self.layoutAttributesForItemAtIndexPath(indexPath) else {
+        guard let indexPath = self.indexPathForItem(at: targetOffset.pointee)
+            , let cellLayout = self.layoutAttributesForItem(at: indexPath) else {
                 return
         }
         
-        var offset = targetOffset.memory
+        var offset = targetOffset.pointee
         
         let targetOffsetXDif = offset.x - cellLayout.frame.minX
         if targetOffsetXDif < roundingWidth {
@@ -38,6 +38,6 @@ public extension UICollectionView {
         } else if targetOffsetYDif > cellLayout.frame.height - roundingHeight {
             offset.y = cellLayout.frame.maxY - self.contentInset.top
         }
-        targetOffset.memory = offset
+        targetOffset.pointee = offset
     }
 }
